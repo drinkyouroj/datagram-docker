@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  datagram:
+    build: .
+    container_name: datagram
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+      - seccomp:unconfined
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      - DATAGRAM_LICENSE_KEY=${DATAGRAM_LICENSE_KEY}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    tmpfs:
+      - /run
+      - /run/lock
+    stop_grace_period: 30s
+    stop_signal: SIGINT
+    # Uncomment and adjust the following if you need to expose any ports
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    #   - "9001:9001"  # Example: if Datagram uses this port
