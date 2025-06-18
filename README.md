@@ -5,7 +5,9 @@ This repository contains the necessary files to run the Datagram CLI inside an U
 ## Prerequisites
 
 - Docker installed on your system
+- A Datagram account (sign up at [Datagram](https://dashboard.datagram.network?ref=535715481))
 - A valid Datagram license key (get it from [Datagram Wallet](https://demo.datagram.network/wallet?tab=licenses))
+![Datagram Network Dashboard Licenses tab, with an arrow pointing to where to click to copy your license key](https://azure-adequate-krill-31.mypinata.cloud/ipfs/bafkreic66kkj4pqt7orgijy2rx5676sk4gyfrmhpxtl4wgbewytd3delh4)
 
 ## Quick Start
 
