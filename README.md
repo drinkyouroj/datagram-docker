@@ -1,11 +1,11 @@
 # Datagram Docker Setup
 
-This repository contains the necessary files to run the Datagram CLI inside an Ubuntu 22.04 Docker container, following the official Datagram documentation.
+This repository contains the necessary files to run the Datagram CLI inside an Ubuntu 22.04 Docker container.
 
 ## Prerequisites
 
 - Docker installed on your system
-- A valid Datagram license key
+- A valid Datagram license key (get it from [Datagram Wallet](https://demo.datagram.network/wallet?tab=licenses))
 
 ## Quick Start
 
@@ -22,28 +22,57 @@ This repository contains the necessary files to run the Datagram CLI inside an U
 
 3. Run the setup script (it will prompt for your license key):
    ```bash
-   ./run.sh
+   sudo ./run.sh
    ```
    
    Alternatively, you can set the license key as an environment variable:
    ```bash
    export DATAGRAM_KEY='your-license-key-here'
-   ./run.sh
+   sudo -E ./run.sh
    ```
+
+## Managing the Container
+
+- View logs:
+  ```bash
+  sudo docker logs -f datagram
+  ```
+
+- Stop the container:
+  ```bash
+  sudo docker stop datagram
+  ```
+
+- Start the container again:
+  ```bash
+  sudo docker start datagram
+  ```
+
+- Remove the container:
+  ```bash
+  sudo docker rm -f datagram
+  ```
 
 ## How It Works
 
-- The `Dockerfile` sets up an Ubuntu 22.04 container with the Datagram CLI installed.
-- The `entrypoint.sh` script runs the Datagram CLI with your provided license key.
-- The `run.sh` script handles building the Docker image and running the container.
+The setup is now simplified to run the Datagram CLI directly in the container:
 
-## Stopping the Container
+1. The `Dockerfile` sets up an Ubuntu 22.04 container with the Datagram CLI installed.
+2. The `entrypoint.sh` script runs the Datagram CLI with your provided license key.
+3. The `run.sh` script handles building the image and running the container in detached mode.
 
-To stop the container, simply press `Ctrl+C` in the terminal where it's running.
+The container is configured to automatically restart unless explicitly stopped.
 
-## Environment Variables
+## Troubleshooting
 
-- `DATAGRAM_KEY`: (Required) Your Datagram license key. Will be prompted if not provided.
+- If you get permission errors, make sure to run the commands with `sudo`
+- Check the logs with `sudo docker logs datagram`
+- To completely reset, remove the container and image, then rebuild:
+  ```bash
+  sudo docker rm -f datagram
+  sudo docker rmi datagram
+  ./run.sh
+  ```
 
 ## License
 

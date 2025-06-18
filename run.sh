@@ -25,13 +25,20 @@ fi
 echo "Building Datagram Docker image..."
 docker build -t datagram .
 
-# Run the container
-echo "Starting Datagram container..."
+# Remove any existing container with the same name
+docker rm -f datagram 2>/dev/null || true
+
+# Run the container in detached mode
+echo "Starting Datagram container in the background..."
 echo "Using license key: ${DATAGRAM_KEY:0:4}...${DATAGRAM_KEY: -4}"
 
-docker run \
-    --rm \
-    -it \
+docker run -d \
     --name datagram \
+    --restart unless-stopped \
     --env DATAGRAM_KEY="$DATAGRAM_KEY" \
     datagram
+
+echo "Container started in the background."
+echo "To view logs:     sudo docker logs -f datagram"
+echo "To stop:         sudo docker stop datagram"
+echo "To remove:       sudo docker rm -f datagram"
