@@ -13,7 +13,7 @@ This repository contains the necessary files to run the Datagram CLI inside an U
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/datagram-docker.git
+   git clone https://github.com/drinkyouroj/datagram-docker.git
    cd datagram-docker
    ```
 
