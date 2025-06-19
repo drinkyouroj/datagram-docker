@@ -50,10 +50,38 @@ This repository contains the necessary files to run the Datagram CLI inside an U
   sudo docker start datagram
   ```
 
+- Update to the latest version (stops, removes, and rebuilds the container):
+  ```bash
+  sudo ./run.sh --update
+  # or
+  sudo ./run.sh -u
+  ```
+  This is useful after new versions of the Datagram node software are released.
+
 - Remove the container:
   ```bash
   sudo docker rm -f datagram
   ```
+
+## Updating
+
+To update to the latest version:
+
+1. Pull the latest changes from the repository:
+   ```bash
+   git pull origin main
+   ```
+
+2. Run the update command:
+   ```bash
+   sudo ./run.sh --update
+   ```
+
+   This will:
+   - Stop the running container
+   - Remove the existing container
+   - Rebuild the Docker image with the latest changes
+   - Start a new container with your existing configuration
 
 ## How It Works
 
