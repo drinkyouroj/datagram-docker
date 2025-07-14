@@ -17,50 +17,62 @@ This repository contains the necessary files to run the Datagram CLI inside an U
    cd datagram-docker
    ```
 
-2. Make the run script executable:
+2. Make the management script executable:
    ```bash
-   chmod +x run.sh
+   chmod +x datagram.sh
    ```
 
 3. Run the setup script (it will prompt for your license key):
    ```bash
-   sudo ./run.sh
+   sudo ./datagram.sh
    ```
    
    Alternatively, you can set the license key as an environment variable:
    ```bash
    export DATAGRAM_KEY='your-license-key-here'
-   sudo -E ./run.sh
+   sudo -E ./datagram.sh
    ```
 
 ## Managing the Container
 
+The `datagram.sh` script provides a unified interface for managing the Datagram container:
+
+- Check container status:
+  ```bash
+  sudo ./datagram.sh --status
+  ```
+
 - View logs:
   ```bash
-  sudo docker logs -f datagram
+  sudo ./datagram.sh --logs
+  ```
+
+- Update to the latest version (stops, removes, and rebuilds the container):
+  ```bash
+  sudo ./datagram.sh --update
+  ```
+  This is useful after new versions of the Datagram node software are released.
+
+- Uninstall (stop and remove the container):
+  ```bash
+  sudo ./datagram.sh --uninstall
+  ```
+
+- Show help:
+  ```bash
+  sudo ./datagram.sh --help
+  ```
+
+### Manual Docker Commands (Alternative)
+
+- Start the container:
+  ```bash
+  sudo docker start datagram
   ```
 
 - Stop the container:
   ```bash
   sudo docker stop datagram
-  ```
-
-- Start the container again:
-  ```bash
-  sudo docker start datagram
-  ```
-
-- Update to the latest version (stops, removes, and rebuilds the container):
-  ```bash
-  sudo ./run.sh --update
-  # or
-  sudo ./run.sh -u
-  ```
-  This is useful after new versions of the Datagram node software are released.
-
-- Remove the container:
-  ```bash
-  sudo docker rm -f datagram
   ```
 
 ## Updating
@@ -74,7 +86,7 @@ To update to the latest version:
 
 2. Run the update command:
    ```bash
-   sudo ./run.sh --update
+   sudo ./datagram.sh --update
    ```
 
    This will:
@@ -89,19 +101,25 @@ The setup is now simplified to run the Datagram CLI directly in the container:
 
 1. The `Dockerfile` sets up an Ubuntu 22.04 container with the Datagram CLI installed.
 2. The `entrypoint.sh` script runs the Datagram CLI with your provided license key.
-3. The `run.sh` script handles building the image and running the container in detached mode.
+3. The `datagram.sh` script provides a unified interface for managing the container:
+   - Setting up and running the container
+   - Checking container status with visual indicators (✅)
+   - Viewing container logs
+   - Uninstalling (stopping and removing) the container
+   - Updating to the latest version
 
 The container is configured to automatically restart unless explicitly stopped.
 
 ## Troubleshooting
 
 - If you get permission errors, make sure to run the commands with `sudo`
-- Check the logs with `sudo docker logs datagram`
-- To completely reset, remove the container and image, then rebuild:
+- Check the logs with `sudo ./datagram.sh --logs`
+- Check the container status with `sudo ./datagram.sh --status`
+- To completely reset, uninstall and then run again:
   ```bash
-  sudo docker rm -f datagram
+  sudo ./datagram.sh --uninstall
   sudo docker rmi datagram
-  ./run.sh
+  sudo ./datagram.sh
   ```
 
 ## License
