@@ -9,7 +9,17 @@ This repository contains the necessary files to run the Datagram CLI inside an U
 - A valid Datagram license key (get it from [Datagram Wallet](https://demo.datagram.network/wallet?tab=licenses))
 ![Datagram Network Dashboard Licenses tab, with an arrow pointing to where to click to copy your license key](https://azure-adequate-krill-31.mypinata.cloud/ipfs/bafkreic66kkj4pqt7orgijy2rx5676sk4gyfrmhpxtl4wgbewytd3delh4)
 
-## Quick Start
+## Quick Start - One Command Installation
+
+Install Datagram by setting the license key as an environment variable and running one command:
+```bash
+export DATAGRAM_KEY=your_license_key_here
+wget -qO- https://raw.githubusercontent.com/drinkyouroj/datagram-docker/main/datagram.sh | sudo -E bash
+```
+
+## Manual Setup
+
+If you prefer to set up manually:
 
 1. Clone this repository:
    ```bash
@@ -25,12 +35,6 @@ This repository contains the necessary files to run the Datagram CLI inside an U
 3. Run the setup script (it will prompt for your license key):
    ```bash
    sudo ./datagram.sh
-   ```
-   
-   Alternatively, you can set the license key as an environment variable:
-   ```bash
-   export DATAGRAM_KEY='your-license-key-here'
-   sudo -E ./datagram.sh
    ```
 
    > **Note:** The script requires sudo privileges to interact with Docker. It will automatically check for sudo privileges and prompt you to run with sudo if needed.
