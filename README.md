@@ -33,6 +33,8 @@ This repository contains the necessary files to run the Datagram CLI inside an U
    sudo -E ./datagram.sh
    ```
 
+   > **Note:** The script requires sudo privileges to interact with Docker. It will automatically check for sudo privileges and prompt you to run with sudo if needed.
+
 ## Managing the Container
 
 The `datagram.sh` script provides a unified interface for managing the Datagram container:
@@ -62,6 +64,8 @@ The `datagram.sh` script provides a unified interface for managing the Datagram 
   ```bash
   sudo ./datagram.sh --help
   ```
+
+> **Important:** All commands require sudo privileges as they interact with Docker. The script will automatically check for sudo privileges and exit with an error if not run with sudo.
 
 ### Manual Docker Commands (Alternative)
 
@@ -112,7 +116,7 @@ The container is configured to automatically restart unless explicitly stopped.
 
 ## Troubleshooting
 
-- If you get permission errors, make sure to run the commands with `sudo`
+- The script requires sudo privileges to interact with Docker. If you see permission errors, make sure to run all commands with `sudo`
 - Check the logs with `sudo ./datagram.sh --logs`
 - Check the container status with `sudo ./datagram.sh --status`
 - To completely reset, uninstall and then run again:
